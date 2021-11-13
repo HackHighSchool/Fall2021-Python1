@@ -1,0 +1,49 @@
+Monopoly Game Plan
+______________
+
+1. Each person chooses a character/counter
+2. Computerized bank that can distribute and take money as necessary
+3. Players are dealt a certain amount of money at the start
+4. Everyone starts on "Go" square
+5. Players roll dice to determine how much forward to travel
+6. Characters move across properties in a certain order
+7. Players can buy properties that are not owned yet
+8. Players have to pay rent on properties that are owned by someone else
+9. Users can mortgage their properties if they don't have any money
+10. If you own all the properties of a certain color, you can buy houses to increase rent
+11. Certain "Wild" squares - Community Chest, Chance, Go, and Go To Jail
+12. Continue to play until only one person has money/property left
+
+Development Idea
+________________
+
+1. Set up the bank, certain amount of money in it
+2. Classes for users
+3. Classes for properties
+4. System for rolling dice, and determining how far the user has to travel
+5. User travels a certain distance
+6. If they reach normal property, run a couple of tests:
+    - See if someone else owns the property -> pay rent to that person
+    - If nobody owns the property, ask if the user wants to buy it.
+        - Yes -> subtract money from account and add property to the user's property list
+        - No -> Stay on tile, no further action
+
+7. If they reach a wild card, then act accordingly:
+    - Send them to Jail
+    - Have them draw a card like community chest
+    - Collect $200 if they pass "Go"
+
+8. If you own all the properties of a certain color -> you can buy a house or hotel
+    - Buying houses/hotels costs a certain amount of money, and increases the cost by a certain amount.
+
+9. Entire process continues until only one person has money and property left, and they become the winner
+    - Timer continues until game ends
+
+Concepts We Should Implement
+______________
+
+1. OOP - Classes and Objects to store data on properties and users
+2. Tuples - store the different properties in order
+3. Dictionaries - Store money counts and each user's property
+4. Conditional and Loop-Based Programming to determine game cycles
+5. Functions and functional programming - handling the different inputs in an organized fashion

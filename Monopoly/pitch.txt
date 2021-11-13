@@ -1,0 +1,34 @@
+Monopoly Game Pitch
+______________
+
+We plan to develop a console-central, input-based Monopoly game based on the popular board game.
+Accordingly, we have constructed our ideas for the core operations, objective and game loop.
+This project will implement concepts in basic python, data structures and object-oriented programming.
+In this semester, we will attempt to get our text-based game on the ground. Next semester, we will try to develop a game with full graphics.
+
+1. Multiple Players on the Same Computer
+    - Potential Option for Player v. Computer or Player v. Player
+    - Players will be be represented as objects within the game
+    - Players provided with a standard amount of money
+
+2. "Game Board" consisting of various "properties"
+    - Set number of squares on the board
+    - Represented as objects within the game
+    - Random Number Generator As Dice
+
+3. Non Property-Related Different Operations
+    - Go to Jail
+    - Community Chest/Chance Cards
+
+4. GAME LOOP
+    - Each player starts at the same point
+    - In order, players roll dice and move forward with the given distance
+    - Taken to a certain position/property
+        - Passing go -> earn $200
+    - Given option to buy it, or pay rent if somebody owns it
+    - Users can also potentially pick up miscellaneous cards (section 6)
+    - If player owns all properties, option to place houses
+    - If player has all the houses on a property, they can place a hotel
+    - If a player runs out of money, they can mortgage their properties
+    - Game continues until there is a winner (everyone else is bankrupt)
+

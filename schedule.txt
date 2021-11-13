@@ -1,0 +1,48 @@
+Plans for Development of Monopoly and Presentation for End-of-Year Expo
+
+10/16
+- Game idea finalized - MONOPOLY ✅
+- Weekly review - Loops, Functions ✅
+- Game development plan finalized ✅
+- Loose individual assignment plans ✅
+
+10/23
+- All assigned Runestone sections finished ✅
+- Weekly review - OOP, Dictionaries/Hashmaps, Python Modules ✅
+- Specific individual assignment plans ✅
+- GitHub repository setup ✅
+
+10/30
+- Elevator Pitch for Game Done ✅
+- Game skeleton and outline 50% done ✅
+
+11/6
+- All team assignments and departments set up  ✅
+- Game skeleton and outline completely finished ✅
+
+11/13
+- Data and schema setup 50% finished
+- Backend setup 25% finished
+
+11/20
+- Data and scheme setup fully finished
+- Backend setup 50% finished
+- Interface design 25% finished
+
+11/27
+- Backend setup fully finished
+- Interface design 50% finished
+- Start work on presentation
+
+12/4
+- Interface design fully finished
+- All sections fully finished
+- Begin testing and debugging process
+- 50% done with presentation
+- Start work on demo
+
+12/11
+- Full Game Completed
+- Testing and debugging fully completed
+- Presentation fully finished
+- Demo fully finished

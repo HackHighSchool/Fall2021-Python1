@@ -1,0 +1,20 @@
+INDIVIDUAL PROJECT SECTIONS
+
+1. Coding and Software Engineering Portion
+    a. Interface Design - Alex F.
+        - Designing the game's interface via Pygame
+        - Creating user input operations and sending those to the backend
+
+    b. Backend Operations - Alex R.
+        - Handling user input
+        - Creating functions to evaluate different operations
+        - Work with the data handling team to make informational operations based on user input
+
+    c. Data Handling and Object Operations - Anny
+        - Designing the core templates for game items - board, properties, houses, etc.
+        - Work with the backend team to help them make data changing operations and modifying information
+
+2. Developing our demo and presentation - Ashley
+    a. Presentation via Google Slides (images and bullet points)
+    b. Demo: Input Set and a full gameplay model with explanations
+    c. Script/speaker notes for our presentation

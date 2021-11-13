@@ -1,0 +1,51 @@
+HackHighSchool Python Game Design 1 Ideas
+Mentor: Kabir Samsi
+Teammates: Alexander Reid, Ashley Kim, Anny Zhang, Alex Fraser
+
+Alex R:
+    - Recreating Older Games
+    - 2048
+    - Flappybird
+    - PacMan
+
+Ashley:
+    - "Choose Your Own Plot" D&D Idea
+        - Text-based
+        - Each decision leads to a new development in the plotline
+        - Decisions impact multiple players
+
+    - 2D Puzzle/Map Quest
+    - Recreate 2D Mario/Super Mario Bros Experience (Final Project)
+
+Anny:
+    - 3D Games (Like Legend of Zelda)
+    - Puzzle Games
+    - Simulate Board Games Virtually
+        - Chutes and Ladders
+        - Connect 4
+        - Monopoly
+        - Chess
+   
+Board Games Virtually - 1
+Mario - 1
+
+SCHEDULE
+__________________________________________
+
+October: 2048, Monopoly
+
+October 9 - 16: Build 2048 as a group
+October 23- November 6: Build Monopoly as a group
+__________________________________________
+
+November: 2D Super Mario
+
+November 6-13:
+November 13-20: 
+November 20-27: 
+November 27-December 4: 
+
+December: Finish 2D Super Mario
+
+December 4-11: 
+December 11-15: RELEASE

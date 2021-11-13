@@ -1,0 +1,68 @@
+2048 Game Idea
+______________
+
+1. Grid-Based Game
+2. Start out with 2 blocks of 2
+3. Combine same-valued blocks to create higher numbers
+4. Moving the grid around sometimes causes a new block to be created - grid fills up
+5. Goal: To create bigger numbers before the grid is filled and no moves are left
+6. Defeat: The grid is completely filled and there are no blocks that can be combined
+
+Development Idea
+________________
+1. Start off by making a grid ✅
+2. Set up a score tracker ✅
+3. Create movement keyboard characters (r, l, u, d) that correspond to each directional movement ✅
+4. When identical adjacent blocks are moved in the same direction, they combine to form a block ✅
+    a. The resultant block is double the size of the starting two blocks ✅
+    b. Score increments when values are combined ✅
+5. Sometimes, like 50% of the time, a new block is created at an empty space in the grid ✅
+6. Keep on going with this process until conditions are met:
+    a. If user reaches a 2048 tile, a success message is outputted/the game ends
+    b. The grid is filled and there are no adjacent blocks of the same value
+
+Concepts Needed
+1. Grid - x,y graph (Cartesian Coordinate Plane)
+    a. Arrays/Lists: An ordered collection of values -> [1, 2, 3, 4, 5]
+    b. Matrix/Grid: 
+[
+    [null, 2, null, 4]
+    [null, 2, 2, null]
+    [null, null, 2, 4]
+    [2, null, null, null]
+]
+
+2. Set up a "tracker" variable
+
+3. 'a' -> left, if not a, then 'd' -> right, if not d, then 'w' -> up, if not w, then 's' corresponds to going down
+movement = input("Movement: ")
+if movement == 'a':
+    #Move left
+elif movement == 'w': 
+    #Move up
+...
+
+4. Use for loop
+for block in row:
+    #Block moves to the left until it hits a wall or adjacent element
+    #If the block equals the next block in that direction, they combine. Otherwise, it stays
+    #If any blocks combine, score increments by resultant value
+
+[4, 2, None, 2]
+[4, 4, None, None]
+Score += 4
+
+5. Use random library to decide whether to create new block or not
+If yes, create at a random null space
+If no, skip
+
+6. Keep on going with this process until conditions are met:
+    a. If user reaches a 2048 tile, a success message is outputted/the game ends
+    b. The grid is filled and there are no adjacent blocks of the same value
+
+7. while (grid does not contain 2048 and grid still has options):
+    #Create two functions:
+        a. Check if a grid contains 2048 in it
+        b. Check if there are any adjacent identical blocks that can be combined
+
+    #Keep on playing
