@@ -66,6 +66,85 @@ Free Parking/ Visiting Jail
 
 import random
 
+class Player:
+    money = 1500
+    space = 0
+    properties = ["A1", "A2", "A3"]
+    def __init__(self, name):
+        self.name = name
+    def get_pos(self):
+        return "{} is currently on {}.".format(self.name,board[self.space])
+    def get_money(self):
+        return self.money
+    def get_properties(self):
+        if len(self.properties) == 0:
+            return "You currently have no properties."
+        else:
+            for i in range(len(self.properties)):
+                print("[" + self.properties[i] + "]")
+            #Have to add this return statement, otherwise returns None. Fix?
+            return "Your properties are listed above."
+    def turn(self):
+        roll1 = random.randrange(1, 6)
+        roll2 = random.randrange(1, 6)
+        total = roll1 + roll2
+        #print("You rolled {} and {}".format(roll1, roll2)
+        self.space += (total)
+        return ("Roll: {}, {}. Total: {}. {} moves to {}.".format(roll1, roll2, total, self.name,board[self.space]))
+     #def pass(self):
+        #current_player += 1
+        #ask player if they want to take turn, then call turn funct
+
+class Space:
+    def __init__(self, name):
+        self.name = name
+    def __str__(self):
+        return "You passed {}.".format(self.name)
+
+#Properties: Companies, Stations, Sites
+#Monopoly properties reference : https://en.wikibooks.org/wiki/Monopoly/Properties_reference
+
+class Property:
+    def __init__(self, name, cost):
+        self.name = name
+        self.cost = cost
+
+parking = Space("Free Parking")
+visjail = Space("Just Visiting Jail")
+print(parking)
+
+class Company(Property):
+    def __init__(self, name, cost, rent):
+        Property.__init__(self, name, cost)
+        self.rent = rent
+
+class Station(Property):
+    def __init__(self, name, cost):
+        Property.__init__(self, name, cost)
+        self.rent = 25
+        #if len({player}.properties) = 2:
+            #self.rent = 50
+        #if len({player}.properties) = 3:
+            #self.rent = 100
+        #if len({player}.properties) = 4:
+            #self.rent = 200
+        #every time # of stations increases, double rent
+
+class Site:
+    def __init__(self, name, cost, color, r1, r2, r3, r4, r5, houses, rent):
+        Property.__init__(self, name, cost)
+        self.color = color
+        #rent1, rent2, rent3... increases with the more houses you Have
+        self.r1 = r1
+        self.r2 = r2
+        self.r3 = r3
+        self.r4 = r4
+        #rent if player has hotel
+        self.r5 = r5
+        self.houses = houses
+        self.rent = self.r1
+
+
 #Board
 board = ("Go",
 "Old Kent Road",
@@ -108,31 +187,6 @@ board = ("Go",
 "Super Tax",
 "Mayfair")
 
-class Player:
-    money = 1500
-    space = 0
-    properties = ["A1", "A2", "A3"]
-    def __init__(self, name):
-        self.name = name
-    def get_pos(self):
-        return "{} is currently on {}.".format(self.name,board[self.space])
-    def get_money(self):
-        return self.money
-    def get_properties(self):
-        if len(self.properties) == 0:
-            return "You currently have no properties."
-        else:
-            for i in range(len(self.properties)):
-                print("[" + self.properties[i] + "]")
-            #Have to add this return statement, otherwise returns None. Fix?
-            return "Your properties are listed above."
-    def turn(self):
-        roll1 = random.randrange(1, 6)
-        roll2 = random.randrange(1, 6)
-        total = roll1 + roll2
-        #print("You rolled {} and {}".format(roll1, roll2)
-        self.space += (total)
-        return ("Roll: {}, {}. Total: {}. {} moves to {}.".format(roll1, roll2, total, self.name,board[self.space]))
 
 #Tests
 '''
@@ -149,3 +203,11 @@ print(alex.space)
 '''
 alex = Player("Alex")
 print(alex.turn())
+
+print (p1.name + " " + str(p1.cost))
+p1 = Company("Water Works", 120, 60)
+print (p2.cost)
+
+road = Site("Kent Road", 50, "Blue", 12, 16, 24, 40, 72, 0, 6)
+print(road.r5)
+print(road.color)
