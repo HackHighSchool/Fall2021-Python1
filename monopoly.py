@@ -76,6 +76,9 @@ gameover = False
 current = 0
 winners_list = []
 
+#show board and instructions
+#trade feature
+#players can view their assets at any time
 
 # C L A S S E S
 class Player:
@@ -210,45 +213,45 @@ class Card:
 
 #Spaces on board
 s1 = Space("In progress") #Go
-s2 = Site("Old Kent Road", 60, "Brown", 2, 10, 30, 90, 160, 250) #//Old Kent Road
+s2 = Site("Mediterranean Avenue", 60, "Brown", 2, 10, 30, 90, 160, 250) #//Old Kent Road
 s3 = Space("In Progress")#Community chest 
-s4 = Site("Whitechapel Road", 60, "Brown", 4, 20, 60, 180, 320, 450) #//Whitechapel Road
+s4 = Site("Baltic Avenue", 60, "Brown", 4, 20, 60, 180, 320, 450) #//Whitechapel Road
 s5 = Space("In Progress") #Income Tax
-s6 = Station("King's Cross Station", 200) #//King's Cross
-s7 = Site("The Angel, Islington", 100, "Cyan", 6, 30, 90, 270, 400, 550) #//The Angel, Islington
+s6 = Station("Reading Railroad", 200) #//King's Cross
+s7 = Site("Oriental Avenue", 100, "Cyan", 6, 30, 90, 270, 400, 550) #//The Angel, Islington
 s8 = Space("In Progress")#Chance
-s9 = Site("Euston Road", 100, "Cyan", 6, 30, 90, 270, 400, 550) #//Euston Road
-s10 = Site("Pentonville Road", 120, "Cyan", 8, 40, 100, 300, 450, 600) #//Pentonville Road
+s9 = Site("Vermont Avenue", 100, "Cyan", 6, 30, 90, 270, 400, 550) #//Euston Road
+s10 = Site("Connecticut Avenue", 120, "Cyan", 8, 40, 100, 300, 450, 600) #//Pentonville Road
 s11 = Space("Just Visiting Jail") #just visiting
-s12 = Site("Pall Mall", 140, "Purple", 10, 50, 150, 450, 625, 750) #//Pall Mall
+s12 = Site("St. Charles Place", 140, "Purple", 10, 50, 150, 450, 625, 750) #//Pall Mall
 s13 = Company("Electric Company", 150)#Electric Company
-s14 = Site("Whitehall", 140, "Purple", 10, 50, 150, 450, 625, 750) #//Whitehall
-s15 = Site("Northumberland Avenue", 160, "Purple", 12, 60, 180, 500, 700, 900) #//Northumrld Ave
-s16 = Station("Marylebone Station", 200) #//Marylebone Station
-s17 = Site("Bow Street", 180, "Orange", 14, 70, 200, 550, 750, 950) #//Bow Str
+s14 = Site("States Avenue", 140, "Purple", 10, 50, 150, 450, 625, 750) #//Whitehall
+s15 = Site("Virginia Avenue", 160, "Purple", 12, 60, 180, 500, 700, 900) #//Northumrld Ave
+s16 = Station("Pennsylvania Railroad", 200) #//Marylebone Station
+s17 = Site("St. James Place", 180, "Orange", 14, 70, 200, 550, 750, 950) #//Bow Str
 s18 = Space("In Progress")#Community Chest
-s19 = Site("Marlborough Street", 180, "Orange", 14, 70, 200, 550, 750, 950) #//Marlborough Str
-s20 = Site("Vine Street", 200, "Orange", 16, 80, 220, 600, 800, 1000) #//Vine Street
+s19 = Site("Tennessee Avenue", 180, "Orange", 14, 70, 200, 550, 750, 950) #//Marlborough Str
+s20 = Site("New York Avenue", 200, "Orange", 16, 80, 220, 600, 800, 1000) #//Vine Street
 s21 = Space("Free Parking") #Free Parking
-s22 = Site("The Strand", 220, "Red", 18, 90, 250, 700, 875, 1050) #//The Strand
+s22 = Site("Kentucky Avenue", 220, "Red", 18, 90, 250, 700, 875, 1050) #//The Strand
 s23 = Space("In Progress")#Chance
-s24 = Site("Fleet Street", 220, "Red", 18, 90, 250, 700, 875, 1050)#//Fleet Street
-s25 = Site("Trafalgar Square", 240, "Red", 20, 100, 300, 750, 925, 1100)#//Trafalgar Square
-s26 = Station("King's Cross Station", 200)#Fenchurch St. Station
-s27 = Site("Leicester Square", 260, "Yellow", 22, 110, 330, 800, 975, 1150)#//Leicester Square
-s28 = Site("Coventry Street", 260, "Yellow", 22, 110, 330, 800, 975, 1150)#//Coventry Street
+s24 = Site("Indiana Avenue", 220, "Red", 18, 90, 250, 700, 875, 1050)#//Fleet Street
+s25 = Site("Illinois Avenue", 240, "Red", 20, 100, 300, 750, 925, 1100)#//Trafalgar Square
+s26 = Station("B&O Railroad", 200)#Fenchurch St. Station
+s27 = Site("Atlantic Avenue", 260, "Yellow", 22, 110, 330, 800, 975, 1150)#//Leicester Square
+s28 = Site("Ventnor Avenue", 260, "Yellow", 22, 110, 330, 800, 975, 1150)#//Coventry Street
 s29 = Company("Water Works", 150) #Water Works
-s30 = Site("Piccadilly", 260, "Yellow", 22, 110, 330, 850, 1025, 1200)#//Piccadilly
+s30 = Site("Marvin Gardens", 260, "Yellow", 22, 110, 330, 850, 1025, 1200)#//Piccadilly
 s31 = Space("Go to Jail")#Go to Jail
-s32 = Site("Regent Street", 300, "Green", 26, 130, 390, 900, 1100, 1275)#//Regent Street
-s33 = Site("Oxford Street", 300, "Green", 26, 130, 390, 900, 1100, 1275)#//Oxford Street
+s32 = Site("Pacific Avenue", 300, "Green", 26, 130, 390, 900, 1100, 1275)#//Regent Street
+s33 = Site("North Carolina Avenue", 300, "Green", 26, 130, 390, 900, 1100, 1275)#//Oxford Street
 s34 = Space("In Progress")#Community Chest
-s35 = Site("Bond Street", 320, "Green", 28, 150, 450, 1000, 1200, 1400)#//Bond Street
-s36 = Station("King's Cross Station", 200)#//Liverpool St. Station
+s35 = Site("Pennsylvania Avenue", 320, "Green", 28, 150, 450, 1000, 1200, 1400)#//Bond Street
+s36 = Station("Short Line", 200)#//Liverpool St. Station
 s37 = Space("In Progress")#Chance
-s38 = Site("Park Lane", 350, "Blue", 35, 175, 500, 1100, 1300, 1500)#//Park Lane
+s38 = Site("Park Place", 350, "Blue", 35, 175, 500, 1100, 1300, 1500)#//Park Lane
 s39 = Space("In Progress")#Super Tax
-s40 = Site("Mayfair", 400, "Blue", 50, 200, 600, 1400, 1700, 2000)#//Mayfair
+s40 = Site("Boardwalk", 400, "Blue", 50, 200, 600, 1400, 1700, 2000)#//Mayfair
 
 #Board - 40 spaces
 board = (s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20,
