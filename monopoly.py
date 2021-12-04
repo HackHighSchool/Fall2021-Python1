@@ -135,6 +135,12 @@ if(start.lower() == "1"):
     print("Objective: The player's goal is to become the wealthiest player through buying, renting and selling property. Bankruptcy results in elimination from the game. The last player remaining on the board is the winner.")
     print("Play: Each player will always start at Go at the beginning of the game. The person going first will roll and recieve the number of spaces they are moving. After moving the delegated spaces, play will move on to the next player. According to the card the player lands on, the player will be entitled to buy real estate or other properties - or pay rent, pay taxes, draw a chance or community card, 'Go to Jail', etc.")
     print("'Go' : Each time a player passes the Go card at the beginnning of the game, they will recieve $200. This includes receiving ")
+    print('Properties: Players have the option to buy properties when landing on them if they do not alredy belong to someone. Owning a property allows you to collect rent from them whenever somebody lands on it.')
+    print('Rent: Each property has a set rent that players must pay if they land on a property that is owned')
+    print('Monopoly: A monopoly is when a player owns all the properties of a certain color. This allows the player to collect double the amount of rent on said properties and gives them the option of buying houses or hotels.')
+    print('Houses and Hotels: Players can buy houses or hotels for their properties to raise the rent on their proporties. Players must have a house on all properties in the monopoly to add another house. A hotel is the equivalent of 5 houses.')
+    print('Trades: When it is the players turn Players have the option to make a trade instead of rolling. Players can trade proporties for other proporties and or money with other plyaers.')
+    print('Jail: When a player gets told to go to jail they are stuck there until their next turn where they can either pay 50 to get out, roll the same number on both dice, or stay in jail')
 
 intro = input("Enter Y to start the game: ")
 if intro.lower() == "y" or intro.lower() == "yes":
