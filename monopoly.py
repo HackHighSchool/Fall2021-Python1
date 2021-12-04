@@ -120,16 +120,29 @@ class Player:
 #This section is before some classes but after player class 
 #because we want to use current_player in some functions in later classes
 #but first we have to define Player to create the list of player objects
+
 # S T A R T   G A M E
 #start by typing y or yes
-intro = input("Welcome to Monopoly. Enter Y to start the game: ")
+print("Welcome to Monopoly!")
+print("")
+print("1 : Rules and Instructions")
+print("2 : Start Game")
+
+start = input("Enter 1 or 2 to continue: ")
+if(start.lower() == "1"):
+    print("Rules and Instructions")
+    print("Objective: The player's goal is to become the wealthiest player through buying, renting and selling property. Bankruptcy results in elimination from the game. The last player remaining on the board is the winner.")
+    print("Play: Each player will always start at Go at the beginning of the game. The person going first will roll and recieve the number of spaces they are moving. After moving the delegated spaces, play will move on to the next player. According to the card the player lands on, the player will be entitled to buy real estate or other properties - or pay rent, pay taxes, draw a chance or community card, 'Go to Jail', etc.")
+    print("'Go' : Each time a player passes the Go card at the beginnning of the game, they will recieve $200. This includes receiving ")
+
+intro = input("Enter Y to start the game: ")
 if intro.lower() == "y" or intro.lower() == "yes":
    num_players = int(input("Enter the number of players: "))
-for i in range(1, num_players+1):
+for i in range(num_players):
     #don't use players += to add to list. separates all characters of the entered string : ("a", "b", "c"...)
-    players.append(Player(input("What is the name of player {}?:".format(i))))
+    players.append(Player(input("What is the name of player {}?: ".format(i + 1))))
 
-current_player = players[0]
+current_player = players[random.randrange(num_players + 1)]
 print("Player 1: %s starts first."%(current_player.name))
 
 class Space:
@@ -138,6 +151,7 @@ class Space:
         self.name = name
     def __str__(self):
         return "You passed {}.".format(self.name)
+
 #Properties: Companies, Stations, Sites
 class Property:
     classify = "property"
@@ -260,7 +274,7 @@ s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31, s32, s33, s34, s35, s36, 
 
 
 # G A M E
-while gameover == False:
+while gameover == False or input == "end game":
     current_player = players[current]
     print(current_player.turn())
     current_space = board[current_player.space]
@@ -285,6 +299,7 @@ while gameover == False:
         current += 1
     else:
         current = 0
+
 
 #if len(players) == 1: #end game if only one player left--> return the
     #if player is out, move obj into another list, 
