@@ -1,6 +1,7 @@
 '''
 Properties ref: https://en.wikibooks.org/wiki/Monopoly/Properties_reference
 Cards reference: https://www.monopolyland.com/list-monopoly-chance-community-chest-cards/
+Rules and Instructions reference: hasbro.com/common/instruct/00009.pdf
 
 Objective
     - become the wealthiest player
