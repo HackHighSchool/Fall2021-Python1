@@ -69,12 +69,22 @@ Free Parking/ Visiting Jail
 
 import random
 
+# S T A R T I N G   V A R I A B L E S
+num_players = 0
+players = []
+gameover = False
+current = 0
+winners_list = []
+
+
+# C L A S S E S
 class Player:
-    money = 1500
-    space = 0
-    properties = []
     def __init__(self, name):
         self.name = name
+        self.money = 1500
+        self.space = 0
+        self.properties = []
+        self.roll = 0
     def get_pos(self):
         return "{} is currently on {}.".format(self.name,board[self.space])
     def get_money(self):
@@ -90,35 +100,63 @@ class Player:
     def turn(self):
         roll1 = random.randrange(1, 6)
         roll2 = random.randrange(1, 6)
-        total = roll1 + roll2
-        self.space += (total)
-        return ("Roll: {}, {}. Total: {}. {} moves to {}.".format(roll1, roll2, total, self.name,board[self.space].name))
+        totalroll = roll1 + roll2
+        self.roll = totalroll
+        #move player back to first space, then add remaining spaces
+        if (len(board) - self.space) <= totalroll:
+            self.space = -1
+            self.space += (totalroll-(len(board) - self.space))
+        else:
+            self.space += (totalroll)
+        return ("Roll: {}, {}. Total: {}.\n{} moves to {}.".format(roll1, roll2, self.roll, self.name,board[self.space].name))
+
     #def pass(self):
         #current_player += 1
         #ask player if they want to take their turn, then call turn funct
 
+#This section is before some classes but after player class 
+#because we want to use current_player in some functions in later classes
+#but first we have to define Player to create the list of player objects
+# S T A R T   G A M E
+#start by typing y or yes
+intro = input("Welcome to Monopoly. Enter Y to start the game: ")
+if intro.lower() == "y" or intro.lower() == "yes":
+   num_players = int(input("Enter the number of players: "))
+for i in range(1, num_players+1):
+    #don't use players += to add to list. separates all characters of the entered string : ("a", "b", "c"...)
+    players.append(Player(input("What is the name of player {}?:".format(i))))
+
+current_player = players[0]
+print("Player 1: %s starts first."%(current_player.name))
+
 class Space:
+    classify = "space"
     def __init__(self, name):
         self.name = name
     def __str__(self):
         return "You passed {}.".format(self.name)
-
 #Properties: Companies, Stations, Sites
 class Property:
+    classify = "property"
     def __init__(self, name, cost):
         self.name = name
         self.cost = cost
 
 class Company(Property):
+    classify = "company"
     #multipliers for rent
         #if one company owned, rent = roll*4
-        #if both comapanies owned, rent = roll*10
+        #if both companies owned, rent = roll*10
     mult1 = 4
     mult2 = 10
     def __init__(self, name, cost):
         Property.__init__(self, name, cost)
+        self.rent = current_player.roll*4
+        #if company1 and company2 in current_player.properties:
+            #self.rent = player's roll*10
         
 class Station(Property):
+    classify = "station"
     def __init__(self, name, cost):
         Property.__init__(self, name, cost)
         self.rent = 25
@@ -131,65 +169,44 @@ class Station(Property):
         #every time # of stations increases, double rent
 
 class Site:
+    classify = "site"
     def __init__(self, name, cost, color, rent, r1, r2, r3, r4, r5):
         Property.__init__(self, name, cost)
         self.color = color
         self.rent = rent
-        #rent1, rent2, rent3... increases with the more houses you Have
+        #rent1, rent2, rent3... increases with the more houses owned
         self.r1 = r1
         self.r2 = r2
         self.r3 = r3
         self.r4 = r4
         #rent with hotel
         self.r5 = r5
+        self.owner = None
+    def buy(self):
+        if self.cost <= current_player.money:
+            current_player.money -= self.cost
+            self.owner = current_player
+            return "Your updated balance is ${}. The new owner of {} is {}.".format(current_player.money, current_space.name,current_player.name)
+        else:
+            return "You don't have enough to buy this property."
+    def pay(self):
+        if self.rent <= current_player.money:
+            current_player.money -= self.rent
+            self.owner = current_player
+            return "You paid rent to {}. Your new balance is ${}".format(board[current_player.space].owner.name, current_player.money)
+        elif self.cost > current_player.money and len(current_player.properties > 0):
+            return input("Would you like to sell a property? Y/N")
+        else: #if cost is higher than player savings and they have no properties to sell:
+            return "{}, is bankrupt. You are out of the game!".format(current_player.name)
 
 #Cards use same class, call specific functions to perform each card's tasks
 class Card:
+    classify = "card"
     def __init__(self, string):
         self.string = string
     def __str__(self):
         return self.string
 
-#Chance Cards
-#Have player enter ok statement to do action on card to give them time to read
-c1 = Card("Advance to Go (Collect $200)")
-c2 = Card("Advance to Trafalgar Square. If you pass Go, collect $200")
-c3 = Card("Advance to Mayfair")
-c4 = Card("Advance to Pall Mall. If you pass Go, collect $200")
-c5 = Card("Advance to the nearest Station. If unowned, you may buy it from the Bank. If owned, pay wonder twice the rental to which they are otherwise entitled")
-c6 = Card("Advance to the nearest Station. If unowned, you may buy it from the Bank. If owned, pay wonder twice the rental to which they are otherwise entitled") 
-c7 = Card("Advance to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times amount thrown.")
-c8 = Card("Bank pays you dividend of $50")
-c9 = Card("Get Out of Jail Free")
-c10 = Card("Go Back 3 Spaces")
-c11 = Card("Go to Jail.") #Go directly to jail - update player.space to one corresponding to Jail
-c12 = Card("Make general repairs on all your property. For each house pay $25. For each hotel pay $100")
-c13 = Card("Speeding fine $15")
-c14 = Card("Take a trip to Kings Cross Station. If you pass Go, collect $200")
-c15 = Card("You have been elected Chairman of the Board. Pay each player $50")
-c16 = Card("Your building loan matures. Collect $150")
-
-#Community Chest Cards
-cc1 = Card("Advance to Go (Collect $200)")
-cc2 = Card("Bank error in your favour. Collect $200")
-cc3 = Card("Doctor’s fee. Pay $50")
-cc4 = Card("From sale of stock you get $50")
-cc5 = Card("Get Out of Jail Free")
-cc6 = Card("Go to Jail.") 
-cc7 = Card("Holiday fund matures. Receive $100")
-cc8 = Card("Income tax refund. Collect $20")
-cc9 = Card("It is your birthday. Collect $10 from every player")
-cc10 = Card("Life insurance matures. Collect $100")
-cc11 = Card("Pay hospital fees of $100")
-cc12 = Card("Pay school fees of $50")
-cc13 = Card("Receive $25 consultancy fee")
-cc14 = Card("You are assessed for street repairs. $40 per house. $115 per hotel")
-cc15 = Card("You have won second prize in a beauty contest. Collect $10")
-cc16 = Card("You inherit $100")
-   
-#Community Chest and Chance cards to pull from
-com_chest = (cc1, cc2, cc3, cc4, cc5, cc6, cc7, cc8, cc9, cc10, cc11, cc12, cc13, cc14, cc15, cc16)
-chance = (c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16)
 
 #Spaces on board
 s1 = Space("In progress") #Go
@@ -237,22 +254,37 @@ s40 = Site("Mayfair", 400, "Blue", 50, 200, 600, 1400, 1700, 2000)#//Mayfair
 board = (s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20,
 s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31, s32, s33, s34, s35, s36, s37, s38, s39, s40)
 
-#Gameplay:
-#Ask how many players
-#Get player names - "Enter player one's name: [input]", "Enter player two..."
-#Create player instance with that name, then append to "players" list
-p1 = Player("Alex")
-p2 = Player("Anny")
-p3 = Player("Ashley")
-players = [p1, p2, p3] #add to list when users input players
-current_player = 0
-#Keep moving to the next person's turn when there are still players in the game
-#while len(players) > 0:
-print(players[0].turn())
-current_player += 1
 
 
-#Tests
-p2 = Company("Water Works", 15)
-print (p2.cost)
+# G A M E
+while gameover == False:
+    current_player = players[current]
+    print(current_player.turn())
+    current_space = board[current_player.space]
+    
+    if current_space.classify == "space":
+        #look for functions that need to be called, call them, then pass on.
+        pass
+    elif current_space.classify == "site" and current_space.owner == None:
+        buy_opt = input("Your current balance is $%d. Would you like to purchase %s for $%d? Y/N"%(current_player.money,current_space.name, current_space.cost))
+        if buy_opt.lower() == "y" or buy_opt.lower() == "yes":
+            print(current_space.buy())
+        else:
+            pass
+    elif current_space.classify == "site" and current_space.owner != None:
+        print(current_space.pay())
+    
+    #Ask if player wants to view properties of space or finish their turn
+    next_step = input("Enter p or properties to view properties of current space OR enter f or finished to pass turn to the next player.\n")
+    #if lower(next_step) == 'p' or lower(next_step) == 'properties':
+        #call properties function
+    if current < num_players-1:
+        current += 1
+    else:
+        current = 0
 
+#if len(players) == 1: #end game if only one player left--> return the
+    #if player is out, move obj into another list, 
+    #gameover == True
+    #print("Game over! The winner is {}. Congratulations!".format(players[0].name))
+    #return the only person left in the players list, then return (in opposite order) the players who lost
