@@ -342,9 +342,10 @@ while gameover == False:
         buy_opt = input("Your current balance is $%d. Would you like to purchase %s for $%d? Y/N "%(current_player.money,current_space.name, current_space.cost))
         if buy_opt.lower() == "y" or buy_opt.lower() == "yes":
             print(current_space.buy())
+        elif buy_opt.lower() == "y" or buy_opt.lower() == "no":
+            pass
         else:
             endGame()
-            pass
     elif current_space.classify == "site" and current_space.owner != None:
         print(current_space.pay())
     
