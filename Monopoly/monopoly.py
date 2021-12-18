@@ -77,10 +77,22 @@ import random
 num_players = 0
 players = []
 gameover = False
-current = random.randrange(num_players + 1)
+current = 0
 winners_list = []
 
 # C L A S S E S
+
+def endGame():
+    print("Would You like to Cancel?")
+    confirm = input("YES or NO? ")
+    print("===========================")
+    if(confirm == "y" or confirm == "yes"):
+        gameover = True
+        print("Game Ended")
+        exit()
+    pass
+  
+
 class Player:
     def __init__(self, name):
         self.name = name
@@ -133,60 +145,58 @@ print("Welcome to Monopoly!")
 print("1 : Rules and Instructions")
 print("2 : Start Game")
 print("                               *****")
-print("If, at any point during the game, you want to stop the game enter N")
+print("If, at any point during the game, you want to stop the game enter END")
 print("                               *****")
 start = input("Enter 1 or 2 to continue: ")
 print("===========================")
 
-#if the input is not 1 or 2, then output Invalid Input and prompt again
-
-if start.lower() == "n":
-    pass
-else:
-    while start != "1" and start != "2":
-        print("Invalid Input")
-        print("")
-        start = input("Try Again: ")
-
-    if start == "1":
-        print("")
-        print("Rules and Instructions")
-        print("======================")
-        print("Objective: The player's goal is to become the wealthiest player through buying, renting and selling property. Bankruptcy results in elimination from the game. The last player remaining on the board is the winner.")
-        print("")
-        print("Play: Each player will always start at Go at the beginning of the game. The person going first will roll and recieve the number of spaces they are moving. After moving the delegated spaces, play will move on to the next player. According to the card the player lands on, the player will be entitled to buy real estate or other properties - or pay rent, pay taxes, draw a chance or community card, 'Go to Jail', etc.")
-        print("")
-        print("'Go' : Each time a player passes the Go card at the beginnning of the game, they will recieve $200. This includes receiving ")
-        print("")
-        print('Properties: Players have the option to buy properties when landing on them if they do not alredy belong to someone. Owning a property allows you to collect rent from them whenever somebody lands on it.')
-        print("")
-        print('Rent: Each property has a set rent that players must pay if they land on a property that is owned')
-        print()
-        print('Monopoly: A monopoly is when a player owns all the properties of a certain color. This allows the player to collect double the amount of rent on said properties and gives them the option of buying houses or hotels.')
-        print("")
-        print('Houses and Hotels: Players can buy houses or hotels for their properties to raise the rent on their proporties. Players must have a house on all properties in the monopoly to add another house. A hotel is the equivalent of 5 houses.')
-        print("")
-        print('Trades: When it is the players turn Players have the option to make a trade instead of rolling. Players can trade proporties for other proporties and or money with other plyaers.')
-        print("")
-        print('Jail: When a player gets told to go to jail they are stuck there until their next turn where they can either pay 50 to get out, roll the same number on both dice, or stay in jail')
-        print("")
-    elif start == "2":
-        print("")
-    else:
-        print("Invalid Input")
-
-    intro = input("Enter Y or YES to start the game: ")
-    while(intro.lower() != "y" and intro.lower() != "yes"):
-        print("Invalid Input")
-    if intro.lower() == "y" or intro.lower() == "yes":
-        num_players = int(input("Enter the number of players: "))
-        for i in range(num_players):
-            #don't use players += to add to list. separates all characters of the entered string : ("a", "b", "c"...)
-            players.append(Player(input("player {}?: ".format(i + 1))))
-
+if start == "1":
     print("")
-    current_player = players[random.randrange(num_players)]
-    print("%s's Roll:"%(current_player.name.upper()))
+    print("Rules and Instructions")
+    print("======================")
+    print("Objective: The player's goal is to become the wealthiest player through buying, renting and selling property. Bankruptcy results in elimination from the game. The last player remaining on the board is the winner.")
+    print("")
+    print("Play: Each player will always start at Go at the beginning of the game. The person going first will roll and recieve the number of spaces they are moving. After moving the delegated spaces, play will move on to the next player. According to the card the player lands on, the player will be entitled to buy real estate or other properties - or pay rent, pay taxes, draw a chance or community card, 'Go to Jail', etc.")
+    print("")
+    print("'Go' : Each time a player passes the Go card at the beginnning of the game, they will recieve $200. This includes receiving ")
+    print("")
+    print('Properties: Players have the option to buy properties when landing on them if they do not alredy belong to someone. Owning a property allows you to collect rent from them whenever somebody lands on it.')
+    print("")
+    print('Rent: Each property has a set rent that players must pay if they land on a property that is owned')
+    print()
+    print('Monopoly: A monopoly is when a player owns all the properties of a certain color. This allows the player to collect double the amount of rent on said properties and gives them the option of buying houses or hotels.')
+    print("")
+    print('Houses and Hotels: Players can buy houses or hotels for their properties to raise the rent on their proporties. Players must have a house on all properties in the monopoly to add another house. A hotel is the equivalent of 5 houses.')
+    print("")
+    print('Trades: When it is the players turn Players have the option to make a trade instead of rolling. Players can trade proporties for other proporties and or money with other plyaers.')
+    print("")
+    print('Jail: When a player gets told to go to jail they are stuck there until their next turn where they can either pay 50 to get out, roll the same number on both dice, or stay in jail')
+    print("")
+elif start == "2":
+    print("")
+else:
+    endGame()
+
+intro = input("Enter Y or YES to start the game: ")
+if(intro.lower()!= "y" and intro.lower()!= "yes"):
+    endGame()
+
+num_players = int(input("Enter the number of players: "))
+
+current = random.randint(0, num_players)
+
+for i in range(num_players):
+    #don't use players += to add to list. separates all characters of the entered string : ("a", "b", "c"...)
+    check = input("player {}?: ".format(i + 1))
+    if(check.lower() == "end"):
+        i = i -1
+        endGame()
+    else:
+        players.append(Player(check))
+
+print("")
+current_player = players[current]
+print("%s's Roll:"%(current_player.name))
 
 
 #C L A S S E S
@@ -258,7 +268,10 @@ class Site:
             self.owner = current_player
             return "You paid rent to {}. Your new balance is ${}".format(board[current_player.space].owner.name, current_player.money)
         elif self.cost > current_player.money and len(current_player.properties > 0):
-            return input("Would you like to sell a property? Y/N")
+            sellProperty = input("Would you like to sell a property? Y/N")
+            endGame(sellProperty)
+            return sellProperty
+            
         else: #if cost is higher than player savings and they have no properties to sell:
             return "{}, is bankrupt. You are out of the game!".format(current_player.name)
 
@@ -317,7 +330,7 @@ board = (s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, 
 s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31, s32, s33, s34, s35, s36, s37, s38, s39, s40)
 
 # G A M E
-while gameover == False or input == "end game":
+while gameover == False:
     current_player = players[current]
     print(current_player.turn())
     current_space = board[current_player.space]
@@ -326,7 +339,7 @@ while gameover == False or input == "end game":
         #look for functions that need to be called, call them, then pass on.
         pass
     elif current_space.classify == "site" and current_space.owner == None:
-        buy_opt = input("Your current balance is $%d. Would you like to purchase %s for $%d? Y/N"%(current_player.money,current_space.name, current_space.cost))
+        buy_opt = input("Your current balance is $%d. Would you like to purchase %s for $%d? Y/N "%(current_player.money,current_space.name, current_space.cost))
         if buy_opt.lower() == "y" or buy_opt.lower() == "yes":
             print(current_space.buy())
         else:
@@ -343,7 +356,7 @@ while gameover == False or input == "end game":
     else:
         current = 0
 
-
+print("Game Over. Current Winner: ")
 #if len(players) == 1: #end game if only one player left--> return the
     #if player is out, move obj into another list, 
     #gameover == True
