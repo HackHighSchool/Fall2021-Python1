@@ -343,12 +343,17 @@ while gameover == False:
         if buy_opt.lower() == "y" or buy_opt.lower() == "yes":
             print(current_space.buy())
         else:
+            endGame()
             pass
     elif current_space.classify == "site" and current_space.owner != None:
         print(current_space.pay())
     
     #Ask if player wants to view properties of space or finish their turn
     next_step = input("Enter p or properties to view properties of current space OR enter f or finished to pass turn to the next player.\n")
+    if(next_step.lower()!= "p" or next_step.lower() != "properties" or next_step.lower()!= "f" or next_step.lower()!= "finished"):
+        endGame()
+    else:
+        pass
     #if lower(next_step) == 'p' or lower(next_step) == 'properties':
         #call properties function
     if current < num_players-1:
