@@ -194,9 +194,8 @@ for i in range(num_players):
     else:
         players.append(Player(check))
 
-print("")
 current_player = players[current]
-print("%s's Roll:"%(current_player.name))
+print("%s Goes First"%(current_player.name))
 
 
 #C L A S S E S
@@ -332,6 +331,7 @@ s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31, s32, s33, s34, s35, s36, 
 # G A M E
 while gameover == False:
     current_player = players[current]
+    print("%s's Turn"%(current_player.name))
     print(current_player.turn())
     current_space = board[current_player.space]
     
